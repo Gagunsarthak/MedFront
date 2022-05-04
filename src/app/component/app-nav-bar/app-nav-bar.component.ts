@@ -11,6 +11,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
   styleUrls: ['./app-nav-bar.component.scss'],
 })
 export class AppNavBarComponent  {
+  screenSizeIsLtMedium=false
   // @Input() mode: 'top' | 'bottom' = 'top'
   // // @Input()
   // // @HostBinding('id')

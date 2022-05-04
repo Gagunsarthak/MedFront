@@ -17,16 +17,24 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+
+import {MatSidenavModule} from '@angular/material/sidenav';
 // import { AppNavBarComponent } from './component/app-nav-bar/app-nav-bar.component';
 import { AppPublicNavBarComponent } from './component/app-public-nav-bar/app-public-nav-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppNavBarComponent } from './component/app-nav-bar/app-nav-bar.component';
+import { AppSideNavBarComponent } from './component/app-side-nav-bar/app-side-nav-bar.component';
 @NgModule({
   declarations: [
     // AppComponent
     RootComponent,
     // AppNavBarComponent,
-    AppPublicNavBarComponent
+    AppSideNavBarComponent,
+    AppPublicNavBarComponent,
+    AppNavBarComponent,
+    AppSideNavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +55,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatListModule,
+    MatSidenavModule,
     BrowserAnimationsModule
   ],
   providers: [],

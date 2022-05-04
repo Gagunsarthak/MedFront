@@ -48,8 +48,33 @@
 //     min-height: calc(100vh - (56px + 32px));
 //   }
 // }
+
 .top-nav-bar {
     position: fixed;
     width: 100%;
     top: 0;
   }
+  //sidenasv
+  // Contents of SideNav Menu
+.sidenav {
+  // width: 20%;
+  // min-width: 250px;
+  // padding: $size-s;
+  background: inherit;
+  box-shadow: none;
+}
+
+mat-sidenav-container {
+  height: 100%;
+ // min-height: 80vh;
+}
+
+// Contents of Side Nav Content
+mat-sidenav-content {
+  margin: 0;
+  //padding: 0 $size-m $size-l;
+  box-sizing: border-box;
+  min-height: calc(100vh - 145px);
+  overflow-x: hidden !important;
+}
+

@@ -33,6 +33,7 @@ export class RootComponent implements OnInit, AfterViewInit {
   isInIframe = false
   appStartRaised = false
   isSetupPage = false
+  screenSizeIsLtMedium = false
   constructor(
     private router: Router,
     // public authSvc: AuthKeycloakService,

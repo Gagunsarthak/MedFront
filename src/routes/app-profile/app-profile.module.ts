@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppProfileComponent } from './app-profile.component';
 import { AppProfileRoutingModule } from './app-profile-routing.module';
 
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { AppProfileRoutingModule } from './app-profile-routing.module';
   ],
   imports: [
     AppProfileRoutingModule,
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   
 })
