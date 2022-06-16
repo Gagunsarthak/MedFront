@@ -33,4 +33,15 @@
 <input #appUpdateTitle type="hidden" i18n-value value="App Update" />
 <input #appUpdateBody type="hidden" i18n-value value="App has been updated. Do you want to load new version?" /> -->
 Root component
+isNavBarRequired :{{isNavBarRequired}}
+mobile vireww :{{isMobileorTabView}}
 <router-outlet></router-outlet>
+<div >
+
+</div>
+
+<div *ngIf="isMobileorTabView && isNavBarRequired" class="fixed-footer" ngxHideOnScroll [propertyUsedToHide]="'transform'" [valueWhenHidden]="'translateY(100%)'"
+  [valueWhenShown]="'translateY(0%)'">
+ 
+    <ws-app-footer></ws-app-footer>
+</div>

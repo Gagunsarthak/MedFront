@@ -21,10 +21,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 // import { AppNavBarComponent } from './component/app-nav-bar/app-nav-bar.component';
 import { AppPublicNavBarComponent } from './component/app-public-nav-bar/app-public-nav-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppFooterComponent } from './component/app-footer/app-footer.component';
+import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 @NgModule({
   declarations: [
     // AppComponent
     RootComponent,
+    AppFooterComponent,
     // AppNavBarComponent,
     AppPublicNavBarComponent
   ],
@@ -36,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    NgxHideOnScrollModule ,
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
@@ -47,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    
     BrowserAnimationsModule
   ],
   providers: [],

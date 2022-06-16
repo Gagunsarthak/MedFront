@@ -4,9 +4,10 @@
 // import { MatDialog } from '@angular/material'
 // import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component'
 
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { Router, NavigationEnd, NavigationStart, NavigationCancel, NavigationError } from "@angular/router";
 import { delay } from "rxjs";
+import { ConfigService } from "src/app/services/config.service";
 import { RootService } from "./root.service";
 
 @Component({
@@ -25,7 +26,9 @@ export class RootComponent implements OnInit, AfterViewInit {
   @ViewChild('appUpdateBody', { static: true })
   appUpdateBodyRef: ElementRef | null = null
 
-//  isXSmall$ = this.valueSvc.isXSmall$
+ // isXSmall$ = this.valueSvc.isXSmall$
+public getScreenWidth: any;
+  public getScreenHeight: any;
   routeChangeInProgress = false
   showNavbar = false
   currentUrl!: string
@@ -33,11 +36,14 @@ export class RootComponent implements OnInit, AfterViewInit {
   isInIframe = false
   appStartRaised = false
   isSetupPage = false
+  isMobileorTabView: boolean;
+  currentRoute: string;
+  
   constructor(
     private router: Router,
     // public authSvc: AuthKeycloakService,
-    // public configSvc: ConfigurationsService,
-    // private valueSvc: ValueService,
+    public configSvc: ConfigService,
+   //  private valueSvc: ValueService,
     // private telemetrySvc: TelemetryService,
     // private mobileAppsSvc: MobileAppsService,
     private rootSvc: RootService,
@@ -48,12 +54,13 @@ export class RootComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
-    try {
-      this.isInIframe = window.self !== window.top
-    } catch (_ex) {
-      this.isInIframe = false
-    }
+
+    // this.onWindowResize()
+    // try {
+    //   this.isInIframe = window.self !== window.top
+    // } catch (_ex) {
+    //   this.isInIframe = false
+    // }
 
    // this.btnBackSvc.initialize()
     // Application start telemetry
@@ -62,6 +69,8 @@ export class RootComponent implements OnInit, AfterViewInit {
     //   this.appStartRaised = true
 
     // }
+    this.configSvc.isLtMedium$.subscribe((event)=>{this.isMobileorTabView=event})
+    
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         if (event.url.includes('/setup/')) {
@@ -71,7 +80,7 @@ export class RootComponent implements OnInit, AfterViewInit {
       if (event instanceof NavigationStart) {
         if (event.url.includes('preview') || event.url.includes('embed')) {
           this.isNavBarRequired = false
-        } else if (event.url.includes('author/') && this.isInIframe) {
+        } else if (event.url.includes('signUp/') ) {
           this.isNavBarRequired = false
         } else {
           this.isNavBarRequired = true
@@ -100,7 +109,18 @@ export class RootComponent implements OnInit, AfterViewInit {
       this.showNavbar = display
     })
   }
-
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+    //console.log("Width of screen is ",this.getScreenWidth)
+    if(this.getScreenWidth<775){
+      this.configSvc.isMobileScreen=true
+    }else{
+      this.configSvc.isMobileScreen=false
+    }
+  // this.openDialog()
+  }
   ngAfterViewInit() {
     // this.initAppUpdateCheck()
   }

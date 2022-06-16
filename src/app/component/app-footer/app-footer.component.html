@@ -1,15 +1,38 @@
-<!-- <div class="mat-toolbar footer-container px-2 sm:px-10 py-1 sm:py-4"
-  [ngClass]="{'mat-primary': !isXSmall, 'mat-primarylight': isXSmall}">
-  <div class="mat-body">
-    <ng-container i18n>
-      Powered by Infosys Wingspan
-    </ng-container>
+
+<nav class="menu ">
+  <input type="radio" name="menu" id="one" checked>
+  <input type="radio" name="menu" id="two">
+  <input type="radio" name="menu" id="three">
+  <input type="radio" name="menu" id="four">
+<input type="radio" name="menu" id="five">
+  <div class=" list">
+      <div class="link-wrap ">
+          <label for="one">
+              <i class="material-icons">home</i>
+              <span>Home</span>
+          </label>
+          <label for="two">
+              <i class="material-icons">chat</i>
+              <span>Chat</span>
+          </label>
+          <label for="two">
+              <button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+                  <i class="material-icons">add</i>
+                </button>
+      </label>
+          
+          <label for="three">
+              <i class="material-icons">search</i>
+              <span>Search</span>
+          </label>
+          <label for="four">
+              <i class="material-icons">menu</i>
+              <span>Menu</span>
+  </label>
+    <!-- <label for="five">
+              <i class="material-icons">home</i>
+              <span>Fifth</span>
+          </label> -->
+      </div>
   </div>
-  <div class="mat-body">
-    <span i18n>&copy; Infosys Ltd. 2019-2020.</span> |
-    <a routerLink="/app/tnc" *ngIf="!termsOfUser" name="termOfUseButtonHomePage" i18n>Terms & Conditions</a>
-    <a routerLink="/app/tnc" *ngIf="termsOfUser" name="termOfUseButtonHomePage" i18n>Terms of Use</a> |
-    <a routerLink="/app/info/faq" name="helpAndContactButtonHomePage" i18n>Help & Contact</a>
-  </div>
-</div> -->
-footer file
+</nav>

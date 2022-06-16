@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-app-profile',
@@ -8,26 +9,29 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class AppProfileComponent implements OnInit {
   public getScreenWidth: any;
   public getScreenHeight: any;
-  isMobileview: boolean=false;
-  constructor() { 
-    console.log("Comp reached")
+  isMobileOrTabView: boolean=false;
+  constructor(
+    private configSvc:ConfigService
+  ) { 
+  
   }
 
   ngOnInit(): void {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-    this.onWindowResize()
+   // this.onWindowResize()
+    this.configSvc.isLtMedium$.subscribe((event)=>{this.isMobileOrTabView=event})
   }
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    this.getScreenHeight = window.innerHeight;
-    //console.log("Width of screen is ",this.getScreenWidth)
-    if(this.getScreenWidth<775){
-      this.isMobileview=true
-    }else{
-      this.isMobileview=false
-    }
-  // this.openDialog()
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onWindowResize() {
+  //   this.getScreenWidth = window.innerWidth;
+  //   this.getScreenHeight = window.innerHeight;
+   
+  //   if(this.getScreenWidth<775){
+  //     this.isMobileOrTabView=true
+  //   }else{
+  //     this.isMobileOrTabView=false
+  //   }
+ 
+  // }
 }

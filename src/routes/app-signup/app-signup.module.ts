@@ -8,6 +8,8 @@ import { AppRegisterComponent } from './components/app-register/app-register.com
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppAccountResetComponent } from './components/app-account-reset/app-account-reset.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -15,10 +17,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppSignupComponent,
     AppLoginComponent,
     
-    AppRegisterComponent
+    AppRegisterComponent,
+         AppAccountResetComponent
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
+
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
