@@ -1,0 +1,13 @@
+.map {
+    width: 500px;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.appt-type {
+    ::ng-deep .mat-tab-header {
+        border-bottom: none;
+    }
+}

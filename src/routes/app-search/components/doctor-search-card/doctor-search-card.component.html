@@ -1,0 +1,63 @@
+<div class="flex flex-col profile-card p-4">
+    <div class="flex flex-row ">
+        <div class="flex flex-row gap-x-6 cursor-pointer">
+            <div class="flex justify-center">
+                <div>
+                    <img class="doc-img"alt="Doc Name" width="120" height="120" src="	https://d3wnzga3fpd9a.cloudfront.net/photos/Dr-Nee…a-Tangirala-MD-MPH-328565-circle_medium__v1__.png
+                ">
+                </div>
+            </div>
+            <div class="grow shrink min-w-0">
+                <a class="flex flex-row justify-between gap-x-16">
+                    <h2>
+                        <span>Dr.</span>
+                        <span> Neelima Tangirala</span>
+                        <span>, MD, MPH</span>
+                    </h2>
+                    <span class="text-gray-500">5 km</span>
+                </a>
+                <span class="text-base">Primary Day Care</span>
+                <div>
+                    <span class="text-base">Viman Nagar, Pune, 411011</span>
+                </div>
+                <div class="flex flex-row items-center mt-1 text-base">
+                    <mat-icon class="text-purple-700">star</mat-icon>
+                    <span>4.61</span>
+                    <span class="text-gray-500 ml-1 mr-4">(234)</span>
+                    <div class="flex items-center patients-label text-sm">
+                        <mat-icon class="text-purple-700">sentiment_very_satisfied</mat-icon>
+                        <span class="ml-1">Loyal Patients</span>
+                    </div>
+                    <mat-icon class="ml-2 text-gray-500">info</mat-icon>
+                </div>
+                <div class="text-gray-500 break-words text-base mt-2.5 mr-8">
+                    <span>New Patients appointments</span>
+                    <span> • Highly recommended </span>
+                    <span> • Excellent wait time</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="flex flex-col gap-y-2 px-2">
+                <div class="flex flex-row gap-x-2">
+                    <a *ngFor="let ele of numbers" class="flex flex-col justify-center items-center appt-date bg-slate-200">
+                        <span>Sat 25</span>
+                        <span class="text-xs">No</span>
+                        <span class="text-xs">Appts</span>
+                    </a>
+                </div>
+                <div class="flex flex-row gap-x-2">
+                    <a *ngFor="let ele of numbers" class="flex flex-col justify-center items-center appt-date bg-teal-100">
+                        <span>Sat 25</span>
+                        <span class="text-xs">24</span>
+                        <span class="text-xs">Appts</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row justify-between pl-28 pr-2 mt-4">
+        <a>See if they're in network</a>
+        <a>View All availability</a>
+    </div>
+</div>
