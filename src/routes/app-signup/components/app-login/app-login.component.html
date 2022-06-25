@@ -1,6 +1,38 @@
+<section class="h-screen">
 
-<form>
-  <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 ">Log In</h1>
+
+<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 ">Log In</h1>
+<mat-tab-group animationDuration="500ms">
+  <mat-tab label="Using OTP">
+    <div class="flex w-full justify-center items-end">
+      <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left" style="width: 75%;">
+        <label for="hero-field" class="leading-7 text-sm ">Enter your mobile number</label>
+        <input type="tel" id="hero-field" name="hero-field" placeholder="Mobile Number" class="w-full  bg-opacity-50 rounded focus:ring-2  focus:bg-transparent border  focus:border-indigo-500 text-base outline-none  py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+      </div>
+      <button mat-flat-button color="primary" class="text-white" *ngIf="!otpFieldEnabled" (click)="sendOtp()">
+        
+        <span>Send OTP</span> </button>
+        <button mat-flat-button color="primary" class=" text-white" *ngIf="otpFieldEnabled"  (click)="sendOtp()">
+        
+          <span>Resend OTP</span> </button>
+      <!-- <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button> -->
+    </div>
+    <div class="flex justify-center mt-12" *ngIf="otpFieldEnabled">
+      <div>
+     
+        <div class="form-floating mb-3 xl:w-96 text-center">
+          <h3 class="sm:text-3xl text-2xl font-medium title-font mb-2 ">You will get an OTP via SMS</h3>
+    
+          <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config" ></ng-otp-input>
+        </div>
+      </div>
+    </div>
+
+    
+   
+ </mat-tab>
+  <mat-tab label="Using Password"><form>
+ 
     <!-- <div class="flex flex-row items-center justify-center lg:justify-start">
       <p class="text-lg mb-0 mr-4">Log In</p>
    
@@ -50,4 +82,7 @@
       >
     
     </p>
-  </form>
+  </form></mat-tab>
+ 
+</mat-tab-group>
+</section>
