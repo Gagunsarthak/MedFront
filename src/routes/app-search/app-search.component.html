@@ -35,11 +35,7 @@
             </div>
         </div>
         <div>
-            <app-doctor-search-card></app-doctor-search-card>
-            <app-doctor-search-card></app-doctor-search-card>
-            <app-doctor-search-card></app-doctor-search-card>
-            <app-doctor-search-card></app-doctor-search-card>
-            <app-doctor-search-card></app-doctor-search-card>
+            <app-doctor-search-card *ngFor="let doc of docList" [doc]="doc"></app-doctor-search-card>
         </div>
     </div>
 </ng-template>

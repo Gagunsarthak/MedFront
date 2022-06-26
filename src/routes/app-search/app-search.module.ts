@@ -8,20 +8,23 @@ import { AppSearchRoutingModule } from './app-search-routing.module';
 import { AppSearchComponent } from './app-search.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { DoctorSearchCardComponent } from './components/doctor-search-card/doctor-search-card.component';
-
+import { SearchService } from './search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppSearchComponent,
     FiltersComponent,
-    DoctorSearchCardComponent
+    DoctorSearchCardComponent,
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     MatButtonModule,
     MatTabsModule,
     MatIconModule,
-    AppSearchRoutingModule
-  ]
+    AppSearchRoutingModule,
+  ],
+  providers: [SearchService],
 })
-export class AppSearchModule { }
+export class AppSearchModule {}
