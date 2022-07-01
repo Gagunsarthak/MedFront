@@ -20,11 +20,13 @@
                     <span class="text-sm pr-4">{{doc.address}}</span>
                 </div>
                 <div class="flex flex-row items-center mt-1 text-base">
-                    <mat-icon class="text-purple-700">star</mat-icon>
+                    <span class="flex items-center icon-color">
+                        <mat-icon>star</mat-icon>
+                    </span>                    
                     <span>{{doc.rating}}</span>
                     <span class="text-gray-500 ml-1 mr-4">({{doc.ratingCount}})</span>
-                    <div class="flex items-center patients-label text-sm">
-                        <mat-icon class="text-purple-700">sentiment_very_satisfied</mat-icon>
+                    <div class="flex items-center patients-label icon-color text-sm">
+                        <mat-icon>sentiment_very_satisfied</mat-icon>
                         <span class="ml-1">{{doc.bestReviewTag}}</span>
                     </div>
                     <mat-icon class="ml-2 text-gray-500">info</mat-icon>

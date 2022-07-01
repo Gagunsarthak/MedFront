@@ -23,9 +23,15 @@ h2 {
 
 .patients-label {
     border-radius: 8px;
-    background: #e7d0f49e;
+    background: #ccfbf1;
     padding: 2px 4px;
 }
+
+.icon-color {
+    .mat-icon {
+        color: #00796b;
+    }
+} 
 
 .appt-date {
     width: 65px;
