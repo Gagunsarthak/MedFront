@@ -10,12 +10,14 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { DoctorSearchCardComponent } from './components/doctor-search-card/doctor-search-card.component';
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
     AppSearchComponent,
     FiltersComponent,
     DoctorSearchCardComponent,
+    MapComponent,
   ],
   imports: [
     HttpClientModule,
