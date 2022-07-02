@@ -4,8 +4,8 @@ export interface ISearch {
   degrees: string;
   serviceType: string;
   address: string;
-  rating: 4.61;
-  ratingCount: 250;
+  rating: number;
+  ratingCount:number;
   distance: string;
   bestReviewTag: string;
   searchImage: string;

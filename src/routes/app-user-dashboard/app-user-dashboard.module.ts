@@ -13,6 +13,7 @@ import { AppUserFavoriteComponent } from './components/app-user-favorite/app-use
 import { AppUserProfileEditComponent } from './components/app-user-profile-edit/app-user-profile-edit.component';
 import { AppUserPasswordChangeComponent } from './components/app-user-password-change/app-user-password-change.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,6 +30,8 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatCardModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatDividerModule,
     MatIconModule,
     AppUserDashboardRoutingModule
