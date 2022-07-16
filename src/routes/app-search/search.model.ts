@@ -8,6 +8,7 @@ export interface ISearch {
   ratingCount:number;
   distance: string;
   bestReviewTag: string;
+  isVideoAllowed:boolean;
   searchImage: string;
   feedbacks: string[];
   appointmentDetail: IAppointmentDetail;
