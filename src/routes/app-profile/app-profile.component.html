@@ -20,7 +20,8 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
       </div>
     </div>
   </div> -->
-<div class="flex flex-wrap  mb-8" >
+  timelineFetchStatus : {{timelineFetchStatus}}
+<div class="flex flex-wrap  mb-8" *ngIf="timelineFetchStatus === 'done'" >
   
     <div class="w-full  lg:w-3/5 xl:w-3/4 " [ngClass]="isMobileOrTabView ? 'md:w-full' : 'md:w-3/5'">
         <div class="  text-sm text-grey-dark flex items-center justify-center">
@@ -49,12 +50,12 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                     <div class="flex items-center justify-between sm:mt-2">
                                         <div class="flex items-center">
                                             <div class="flex flex-col">
-                                                <div class="w-full flex-none text-lg  font-bold leading-none">Dr. Sandeep Awasthi</div>
+                                                <div class="w-full flex-none text-lg  font-bold leading-none" *ngIf="profRes.name">Dr. {{profRes.name}}</div>
                                                 <div class="flex-auto  my-1">
-                                                    <span class="mr-3 ">Neurosurgeon</span><span class="mr-3 border-r border-gray-200  max-h-0"></span><span>MBBS, MS</span>
+                                                    <span class="mr-3 "  *ngIf="profRes.designation">{{profRes.designation}}</span><span class="mr-3 border-r border-gray-200  max-h-0"></span><span>MBBS, MS</span>
                                                 </div>
                                                 <div class="flex-auto  ">
-                                                    <span class="mr-3 ">Gurgaon, India</span>
+                                                    <span class="mr-3 " *ngIf="profRes.address">{{profRes.address}}</span>
                                                     
                                                 </div>
                                             </div>
@@ -67,7 +68,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                         
                                         <div class="flex-1 inline-flex items-center">
                                             <mat-chip-list aria-label="Consultations Available">
-                                                <mat-chip color="primary" selected>
+                                                <mat-chip color="primary"  selected *ngIf="profRes.isVideoAllowed">
                                                     <mat-chip-avatar>
                                                       <mat-icon> video_call </mat-icon>
                                                     </mat-chip-avatar>
@@ -75,7 +76,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                                   </mat-chip>
                                            
                                           
-                                                <mat-chip color="primary" selected>
+                                                <mat-chip color="primary" selected *ngIf="profRes.isPersonAllowed">
                                                     <mat-chip-avatar>
                                                       <mat-icon> how_to_reg </mat-icon>
                                                     </mat-chip-avatar>
@@ -89,15 +90,15 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                         <div class="flex">
 
                                             
-                                            <div class="flex cursor-pointer items-center gap-2 rounded-lg bg-blue-500 p-2">
-                                                <label class="cursor-pointer">
+                                            <div class="flex cursor-pointer items-center gap-2 rounded-lg bg-blue-500 p-2" *ngIf="profRes.isPersonAllowed">
+                                                <label class="cursor-pointer" >
                                                     <div class="flex h-5 items-center ">
                                                         <mat-icon> how_to_reg </mat-icon>
                                                       </div>
                                                 </label>
                                                 <div class="text-white">In-Person visits</div>
                                               </div>
-                                            <div class="flex cursor-pointer items-center gap-2 ml-4 rounded-lg bg-blue-500 p-2">
+                                            <div class="flex cursor-pointer items-center gap-2 ml-4 rounded-lg bg-blue-500 p-2" *ngIf="profRes.isVideoAllowed">
                                                 <label class="cursor-pointer">
                                                   <div class="flex h-5  items-center ">
                                                     <mat-icon> video_call </mat-icon>
@@ -131,7 +132,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                                         d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                                <p class="">14 Components</p>
+                                                <p class="">140 Consultations</p>
                                             </div>
                                             <!-- <button  class="flex-no-shrink bg-green-400 hover:bg-green-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300">FOLLOW</button> -->
                                         </div>
@@ -157,12 +158,12 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                     </div>
                                     <div class="text-sm ml-4">
                                         <div class="flex flex-col">
-                                            <div class="w-full  flex-none text-lg font-bold leading-none">Dr. Sandeep Awasthi</div>
+                                            <div class="w-full  flex-none text-lg font-bold leading-none" *ngIf="profRes.name">{{profRes.name}}</div>
                                             <div class="flex-auto  my-1">
-                                                <span class="mr-3 ">Neurosurgeon</span><span class="mr-3 border-r border-gray-200  max-h-0"></span><span>MBBS, MS</span>
+                                                <span class="mr-3 " *ngIf="profRes.designation">{{profRes.designation}}</span><span class="mr-3 border-r border-gray-200  max-h-0"></span><span>MBBS, MS</span>
                                             </div>
                                             <div class="flex-auto  ">
-                                                <span class="mr-3 ">Gurgaon, India</span>
+                                                <span class="mr-3 " *ngIf="profRes.address">profRes.address</span>
                                                 
                                             </div>
                                         </div>
@@ -242,8 +243,8 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                             </svg>
                                           </div> -->
                                           <div class="flex flex-col items-center text-center justify-center">
-                                            <h2 class="font-medium title-font mt-4 text-lg">Overall Rating</h2>
-                                            <div class="w-12 text-4xl rounded text-center mb-4">4.98</div>
+                                            <h2 class="font-medium title-font mt-4 text-lg" *ngIf="profRes.averageRating">Overall Rating</h2>
+                                            <div class="w-12 text-4xl rounded text-center mb-4" *ngIf="profRes.averageRating">4.98</div>
                                             <div class="flex justify-center items-center">
                                                 <div class="flex items-center mt-2 mb-4">
                                                   <svg class="mx-1 w-4 h-4 fill-current text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
@@ -388,83 +389,97 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                             </div>
                                           </div>
                                       </mat-card>
-                                      <mat-card class="w-full mt-2 shadow">
-                                        <h4>LANGUAGES SPOKEN</h4>
-                                        <mat-chip-list aria-label="languages spoken">
-                                            <mat-chip>English</mat-chip>
-                                            <mat-chip>Hindi</mat-chip>
-                                            <mat-chip color="primary" >Odia</mat-chip>
-                                            <mat-chip color="accent" >Telugu</mat-chip>
-                                          </mat-chip-list>
+                                      <mat-card class="w-full mt-2 shadow" *ngIf="profRes.languages">
+                                       <div class="flex justify-between">
+                                        <h3>LANGUAGES SPOKEN</h3>
+                                        <div class="example-button-row">
+                                          <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                          <button> <mat-icon>create</mat-icon></button>
+                                         
+                                         
+                                        </div>
+                                        
+                                       </div>
+                                        <mat-chip-list aria-label="languages spoken" >
+                                            <mat-chip *ngFor="let language of profRes.languages">{{language}}</mat-chip>
+                                        </mat-chip-list>
                                   </mat-card>
-                                      <mat-card class="w-full mt-2 shadow">
-                                        <h3>SPECIALIZATIONS</h3>
-                                      <ul class="">
+                                      <mat-card class="w-full mt-2 shadow" *ngIf="profRes.specialization">
+                                        <div class="flex justify-between">
+                                          <h3>SPECIALIZATIONS</h3>
+                                          <div class="example-button-row">
+                                            <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                            <button> <mat-icon>create</mat-icon></button>
+                                           
+                                           
+                                          </div>
+                                          
+                                         </div>
+                                     
+                                      <ul class="" *ngFor="let spec of profRes.specialization">
                                           <li class="">     <div class="">
                                               <div class="inline-flex items-center ">
-                                                <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-stethoscope'></i></span>
+                                                <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-stethoscope'></i></span>
                                                 <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                             
-                                                  <span> Neurosurgeon</span>
+                                                  <span> {{spec}}</span>
                                                   <!-- <div class=" text-xs font-light">National Institute of Mental Health and Neurosciences (NIMHANS)</div> -->
                                               </div>
                                               
                                               </div>
                                               
                                             </div></li>
-                                            <li class="">     <div class="">
-                                              <div class="inline-flex items-center ">
-                                                <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-stethoscope'></i></span>
-                                                <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
-                                            
-                                                  <span>Neurologist</span>
-                                                  <!-- <div class=" text-xs font-light">Srirama Chandra Bhanja Medical College and Hospital</div> -->
-                                              </div>
-                                              
-                                              </div>
-                                              
-                                            </div></li>
+                                          
                                           <!-- <li class="p-3">List Item 3</li>
                                           <li class="p-3">List Item 4</li> -->
                                       </ul>
                                   </mat-card>
-                                  <mat-card class="w-full mt-2 shadow">
-                                    <h3>EXPERIENCE</h3>
-                                  <ul class="">
+                                  <mat-card class="w-full mt-2 shadow" *ngIf="profRes.experience">
+                                    
+                                    <div class="flex justify-between">
+                                      <h3>EXPERIENCE</h3>
+                                      <div class="example-button-row">
+                                        <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                        <button> <mat-icon>create</mat-icon></button>
+                                       
+                                       
+                                      </div>
+                                      
+                                     </div>
+                                  <ul class="" *ngFor="let exp of profRes.experience">
                                       <li class="">     <div class="">
                                           <div class="inline-flex items-center ">
-                                            <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-clinic-medical'></i></span>
+                                            <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-clinic-medical'></i></span>
                                             <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                         
-                                              <span> HOD and Professor of Neurosurgery Dept.,2000-Present</span>
-                                              <div class=" text-xs font-normal">National Institute of Mental Health and Neurosciences (NIMHANS)</div>
+                                              <span>{{exp.title}}, {{exp.startDate}}-{{exp.endDate||'present'}}</span>
+                                              <div class=" text-xs font-normal">{{exp.comapanyName}}</div>
+                                              <div class=" text-xs font-medium">{{exp.description}}</div>
                                           </div>
                                           
                                           </div>
                                           
                                         </div></li>
-                                        <li class="">     <div class="">
-                                          <div class="inline-flex items-center ">
-                                              <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-clinic-medical'></i></span>
-                                              <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
-                                        
-                                              <span> HOD and Professor of Neurosurgery Dept.,1995-2000</span>
-                                              <div class=" text-xs font-normal">Srirama Chandra Bhanja Medical College and Hospital</div>
-                                          </div>
-                                          
-                                          </div>
-                                          
-                                        </div></li>
-                                      <!-- <li class="p-3">List Item 3</li>
-                                      <li class="p-3">List Item 4</li> -->
+                                    
+                                    
                                   </ul>
                               </mat-card>
-                              <mat-card class="w-full mt-2 shadow">
-                                <h3>AWARDS & PUBLICATIONS</h3>
+                              <mat-card class="w-full mt-2 shadow" >
+                              
+                                <div class="flex justify-between">
+                                  <h3>AWARDS & PUBLICATIONS</h3>
+                                  <div class="example-button-row">
+                                    <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                    <button> <mat-icon>create</mat-icon></button>
+                                   
+                                   
+                                  </div>
+                                  
+                                 </div>
                               <ul class="">
                                   <li class="">     <div class="">
                                       <div class="inline-flex items-center ">
-                                        <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
+                                        <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
                                         <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                     
                                           <span> Former President Of Indian Medical Association, Mysore, 2013</span>
@@ -476,7 +491,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                     </div></li>
                                     <li class="">     <div class="">
                                       <div class="inline-flex items-center ">
-                                          <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
+                                          <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
                                           <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                     
                                           <span>Secretary of Indian Medical Association,Mysore, 2012</span>
@@ -490,33 +505,34 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                   <li class="p-3">List Item 4</li> -->
                               </ul>
                           </mat-card>
-                                      <mat-card class="w-full mt-2 shadow">
-                                          <h3>EDUCATIONAL QUALIFICATIONS</h3>
-                                        <ul class="">
-                                            <li class="">     <div class="">
+                        
+                                      <mat-card class="w-full mt-2 shadow" *ngIf="profRes.education">
+                                         
+                                          <div class="flex justify-between">
+                                            <h3>EDUCATIONAL QUALIFICATIONS</h3>
+                                            <div class="example-button-row">
+                                              <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                              <button> <mat-icon>create</mat-icon></button>
+                                             
+                                             
+                                            </div>
+                                            
+                                           </div>
+                                        <ul class="" *ngFor="let qual of profRes.education" >
+                                            <li class="">    
+                                               <div class="">
                                                 <div class="inline-flex items-center ">
-                                                  <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><mat-icon>school</mat-icon></span>
+                                                  <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><mat-icon>school</mat-icon></span>
                                                   <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                               
-                                                    <span> MCh-Neuro Surgery-1995</span>
-                                                    <div class=" text-xs font-normal">National Institute of Mental Health and Neurosciences (NIMHANS)</div>
+                                                    <span> {{qual.degree}}-{{qual.fieldOfStudy}}-{{qual.startDate}}</span>
+                                                    <div class=" text-xs font-normal">{{qual.school}}</div>
                                                 </div>
                                                 
                                                 </div>
                                                 
                                               </div></li>
-                                              <li class="">     <div class="">
-                                                <div class="inline-flex items-center ">
-                                                    <span class="inline-flex text-white rounded-full h-6 px-3 justify-center items-center "><mat-icon>school</mat-icon></span>
-                                                    <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                               
-                                                    <span> MBBS - 1986</span>
-                                                    <div class=" text-xs font-normal">Srirama Chandra Bhanja Medical College and Hospital</div>
-                                                </div>
-                                                
-                                                </div>
-                                                
-                                              </div></li>
                                             <!-- <li class="p-3">List Item 3</li>
                                             <li class="p-3">List Item 4</li> -->
                                         </ul>
@@ -589,7 +605,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                           <li class="">
                                             <div class="p-2">
                                                 <div class="inline-flex items-center ">
-                                                  <span class="inline-flex bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center"><mat-icon> whatshot </mat-icon></span>
+                                                  <span class="inline-flex bg-red-600  rounded-full h-6 px-3 justify-center items-center"><mat-icon> whatshot </mat-icon></span>
                                                   <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                               
                                                     <span> Highly Recommended</span>
@@ -930,5 +946,10 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
         
         </div>
      </div>
-   
+
  </div>
+ 
+  <!-- <div class="text-center w-full">
+   
+    <mat-spinner class="display-inline-block" [diameter]="60" [strokeWidth]="3"></mat-spinner>
+  </div> -->

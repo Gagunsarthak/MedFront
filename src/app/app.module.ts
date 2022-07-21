@@ -18,18 +18,22 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+
 // import { AppNavBarComponent } from './component/app-nav-bar/app-nav-bar.component';
 import { AppPublicNavBarComponent } from './component/app-public-nav-bar/app-public-nav-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppFooterComponent } from './component/app-footer/app-footer.component';
 import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
+import { HttpClientModule } from '@angular/common/http';
+import { DialogComponent } from './component/dialog/dialog.component';
 @NgModule({
   declarations: [
     // AppComponent
     RootComponent,
     AppFooterComponent,
     // AppNavBarComponent,
-    AppPublicNavBarComponent
+    AppPublicNavBarComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    
+    HttpClientModule,
     BrowserAnimationsModule
   ],
   providers: [],

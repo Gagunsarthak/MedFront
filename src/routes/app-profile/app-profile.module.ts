@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppProfileComponent
@@ -22,10 +24,12 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatChipsModule,
     MatDividerModule,
+    HttpClientModule,
     MatButtonModule,
     MatButtonToggleModule,
     RouterModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     CommonModule
   ],
   

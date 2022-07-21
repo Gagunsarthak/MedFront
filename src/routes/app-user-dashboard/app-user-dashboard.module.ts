@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
 import { AppUserDashboardRoutingModule } from './app-user-dashboard-routing.module';
 import { AppUserDashboardComponent } from './app-user-dashboard/app-user-dashboard.component';
 import { MatCardModule } from '@angular/material/card';
@@ -14,8 +13,9 @@ import { AppUserProfileEditComponent } from './components/app-user-profile-edit/
 import { AppUserPasswordChangeComponent } from './components/app-user-password-change/app-user-password-change.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table'
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppUserDashboardComponent,
@@ -30,6 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatCardModule,
     RouterModule,
+    MatTabsModule,
+    MatTableModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
     MatDividerModule,
