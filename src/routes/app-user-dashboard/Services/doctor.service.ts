@@ -6,11 +6,16 @@ import { IDoctorTimeline } from '../Models/doctor.model';
   providedIn: 'root'
 })
 export class DoctorService {
- url:string="https://mocki.io/v1/a2bac778-6696-4729-b482-ceadc00f0315"
-  constructor(private httpClient: HttpClient) { }
+ url:string="http://localhost:3000/doctors/doctorDetail"
+  constructor(private httpClient: HttpClient) {
+    
+   }
 
-  fetchProfileData(id:String,type:String): Observable<IDoctorTimeline> {
+  fetchProfileData(id:String,type:String,field:String[]): Observable<any> {
+  const req={id:id, role:type,fields:field}
   
-    return this.httpClient.get<IDoctorTimeline>(this.url)
+  return this.httpClient.post<IDoctorTimeline>(this.url, req)
+ 
+  //return this.httpClient.post<IDoctorTimeline>(this.url)
   }
 }

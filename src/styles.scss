@@ -213,7 +213,7 @@ $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
-@include angular-material-theme($altTheme
+@include angular-material-theme($theme
 );
 
 .theme-alternate {

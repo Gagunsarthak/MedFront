@@ -1,4 +1,5 @@
 export interface IDoctorTimeline{
+    identifier: String;
     address:String;
     ailmentsTreated:String[];
     averageRating:String;
@@ -10,6 +11,7 @@ export interface IDoctorTimeline{
     experience:IExperienceDetails[];
     firstName:String,
     gender:String;
+    associatedClinics:IClinicDetails[]
     hospital:IHospitalDetails;
     isPersonAllowed:String;
     isVideoAllowed: String;
@@ -21,10 +23,16 @@ export interface IDoctorTimeline{
     location: String,
     name: String,
     phone: String,
-    specialization: String,
+    specialization: String[],
     state: String,
     yearsOfExperience: String;
     schedule:IScheduleDetails[];
+    awardsAndPublications:IAwardsAndPublications[];
+    reviewTags:IReviewTags[],
+    noOfReviews:String,
+    consultations:String,
+    satisfiedPatients:String,
+    profImageUrl:String
 }
 
 
@@ -65,4 +73,65 @@ export interface ILicenseDetail{
 export interface IWorkingTimeDetails{
     startTime: String,
     endTime: String
+}
+export interface IClinicDetails{
+    clinicName:String,
+    location:String,
+    fees:String,
+    tagReceived:String[],
+    schedule: IClinicSchedule[]
+}
+export interface IClinicSchedule{
+    from:String,
+    to:String
+    duration:String[]
+
+}
+export interface IAwardsAndPublications{
+    awardName:String,
+    date:String,
+    place:String
+}
+
+export interface IReviewTags{
+    tagName:String,
+    description:String
+}
+
+export interface IDocProfEditReq{
+    id : String,
+    role : String,
+    address?:String;
+    ailmentsTreated?:String[];
+    averageRating?:String;
+    city?:String;
+    country?:String;
+    designation?:String;
+    education?: IEducationDetails[];
+    email?:String;
+    experience?:IExperienceDetails[];
+    firstName?:String,
+    gender?:String;
+    associatedClinics?:IClinicDetails[]
+    hospital?:IHospitalDetails;
+    isPersonAllowed?:String;
+    isVideoAllowed?: String;
+    landmark?: String,
+    languages?:  String[],
+    lastName?: String,
+    licenses?:ILicenseDetail;
+    locality?: String,
+    location?: String,
+    name?: String,
+    phone?: String,
+    specialization?: String[],
+    state?: String,
+    yearsOfExperience?: String;
+    schedule?:IScheduleDetails[];
+    awardsAndPublications?:IAwardsAndPublications[];
+    reviewTags?:IReviewTags[],
+    noOfReviews?:String,
+    consultations?:String,
+    satisfiedPatients?:String,
+    profImageUrl?:String
 }

@@ -1,64 +1,372 @@
-<h2 mat-dialog-title>Install Angular</h2>
-<mat-dialog-content class="mat-typography">
-  <h3>Develop across all platforms</h3>
-  <p>Learn one way to build applications with Angular and reuse your code and abilities to build
-    apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+<ng-container *ngIf="type=='Language' || type=='Specialization'">
+  <div class="relative  w-full h-full md:h-auto">
+    <div class="flex justify-between items-start p-4 rounded-t ">
+      <h3 class="text-xl font-bold ">
+        Add {{dialogHeader}} langorSpcl.length : {{langorSpcl.length}}
+      </h3>
+      <button type="button" mat-dialog-close
+        class=" bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
 
-  <h3>Speed &amp; Performance</h3>
-  <p>Achieve the maximum speed possible on the Web Platform today, and take it further, via Web
-    Workers and server-side rendering. Angular puts you in control over scalability. Meet huge
-    data requirements by building data models on RxJS, Immutable.js or another push-model.</p>
+    </div>
+    <!-- Modal toggle -->
+    <div class=" space-y-6">
+      <div class="relative w-full mb-3">
+        
+          <mat-form-field class="example-chip-list" appearance="fill"  class="border-0 rounded text-sm  focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+            <mat-label>Enter new {{dialogHeader}}</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip
+                *ngFor="let data of langorSpcl"
+                (removed)="remove(data)">
+                {{data}}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+              
+                placeholder="New Entry..."
+                #dataInput
+                [formControl]="fruitCtrl"
+               
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+     
+          </mat-form-field>
+          <div class="text-xs">
+          Press Enter or comma after each entry.
+        </div>
+      </div>
+    </div>
+    <!-- Main modal -->
 
-  <h3>Incredible tooling</h3>
-  <p>Build features quickly with simple, declarative templates. Extend the template language with
-    your own components and use a wide array of existing components. Get immediate Angular-specific
-    help and feedback with nearly every IDE and editor. All this comes together so you can focus
-    on building amazing apps rather than trying to make the code work.</p>
+    <div class="flex flex-row-reverse p-1 space-x-2 rounded-b dark:border-gray-600">
+      <button mat-flat-button mat-dialog-close
+        class="text-gray-500 sm:w-1/5 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none ">Cancel</button>
+      <button mat-flat-button mat-dialog-close color="primary" [disabled]="langorSpcl.length<=0" (click)="submitLangOrSpclData()" class="sm:w-1/5" style="margin-right:4% ;">Done</button>
 
-  <h3>Loved by millions</h3>
-  <p>From prototype through global deployment, Angular delivers the productivity and scalable
-    infrastructure that supports Google's largest applications.</p>
 
-  <h3>What is Angular?</h3>
+    </div>
+  </div>
 
-  <p>Angular is a platform that makes it easy to build applications with the web. Angular
-    combines declarative templates, dependency injection, end to end tooling, and integrated
-    best practices to solve development challenges. Angular empowers developers to build
-    applications that live on the web, mobile, or the desktop</p>
+</ng-container>
 
-  <h3>Architecture overview</h3>
+<ng-container *ngIf="type=='Education'">
 
-  <p>Angular is a platform and framework for building client applications in HTML and TypeScript.
-  Angular is itself written in TypeScript. It implements core and optional functionality as a
-  set of TypeScript libraries that you import into your apps.</p>
 
-  <p>The basic building blocks of an Angular application are NgModules, which provide a compilation
-  context for components. NgModules collect related code into functional sets; an Angular app is
-  defined by a set of NgModules. An app always has at least a root module that enables
-  bootstrapping, and typically has many more feature modules.</p>
+  <div class="flex justify-between items-start p-4 rounded-t ">
+    <h3 class="text-xl font-bold ">
+      Add Education Details
+    </h3>
+    <button type="button" mat-dialog-close
+      class=" bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span class="sr-only">Close modal</span>
+    </button>
 
-  <p>Components define views, which are sets of screen elements that Angular can choose among and
-  modify according to your program logic and data. Every app has at least a root component.</p>
+  </div>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 sm:w-full group">
+        <input type="text" name="floating_Institution" formControlName="institution" id="floating_title"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: AIIMS, Delhi " required="">
+        <label for="floating_Institution"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100  peer-focus:scale-75 peer-focus:-translate-y-6">Institution</label>
+        <div
+          *ngIf="myForm.get('institution')!.invalid && (myForm.get('institution')!.dirty || myForm.get('institution')!.touched)"
+          class="text-red-500">
+          Please provide the institution name.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_Degree" id="floating_Degree" formControlName="degree"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: Bachelor's" required="">
+        <label for="floating_Degree"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Degree</label>
+        <div *ngIf="myForm.get('degree')!.invalid && (myForm.get('degree')!.dirty || myForm.get('degree')!.touched)"
+          class="text-red-500">
+          Please provide the degree name.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_StudyField" id="floating_StudyField" formControlName="studyField"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: Nephrology" required="">
+        <label for="floating_StudyField"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Field
+          of Study</label>
+        <div
+          *ngIf="myForm.get('studyField')!.invalid && (myForm.get('studyField')!.dirty || myForm.get('studyField')!.touched)"
+          class="text-red-500">
+          Please provide the field of study.
+        </div>
+      </div>
+    </div>
 
-  <p>Components use services, which provide specific functionality not directly related to views.
-  Service providers can be injected into components as dependencies, making your code modular,
-  reusable, and efficient.</p>
+    <!-- <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_StudyField" id="floating_StudyField" formControlName="studyField" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer" placeholder="Ex: Nephrology" required="">
+        <label for="floating_StudyField" class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Field of Study</label>
+        <div *ngIf="myForm.get('studyField')!.invalid && (myForm.get('studyField')!.dirty || myForm.get('studyField')!.touched)" class="text-red-500">
+            Please provide the field of study.
+          </div>
+    </div> -->
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="month" name="floating_start_date" id="floating_start_date" formControlName="startDate"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="April,2022" required="">
+        <label for="floating_start_date"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600  peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Start
+          Date</label>
+        <div
+          *ngIf="myForm.get('startDate')!.invalid && (myForm.get('startDate')!.dirty || myForm.get('startDate')!.touched)"
+          class="text-red-500">
+          Please provide the start date.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="month" name="floating_end_date" id="floating_end_date" formControlName="endDate"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="June,2022" required="">
+        <label for="floating_end_date"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600  peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">End
+          Date (or expected)</label>
+        <div *ngIf="myForm.get('endDate')!.invalid && (myForm.get('endDate')!.dirty || myForm.get('endDate')!.touched)"
+          class="text-red-500">
+          Please provide the end date.
+        </div>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <!-- <div class="relative z-0 mb-6 w-full group">
+          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer" placeholder=" " required="">
+          <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456-7890)</label>
+      </div> -->
+      <div class="relative z-0 mb-6 w-full group mt-2">
+        <textarea name="floating_desc" id="floating_desc" rows="4" formControlName="description"
+          class="block py-2.5 px-0 w-full text-sm   bg-transparent border-2  border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Share your experience and achievements during the course "></textarea>
+        <label for="floating_desc"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+        <!-- <div *ngIf="myForm.get('description')!.invalid && (myForm.get('description')!.dirty || myForm.get('description')!.touched)" class="text-red-500">
+            Please provide a description.
+          </div>   -->
+      </div>
+    </div>
+    <button type="submit" [disabled]="myForm.invalid"
+      class="text-white bg-purple-700 disabled:opacity-25 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Add</button>
+  </form>
 
-  <p>Both components and services are simply classes, with decorators that mark their type and
-  provide metadata that tells Angular how to use them.</p>
+</ng-container>
 
-  <p>The metadata for a component class associates it with a template that defines a view. A
-  template combines ordinary HTML with Angular directives and binding markup that allow Angular
-  to modify the HTML before rendering it for display.</p>
 
-  <p>The metadata for a service class provides the information Angular needs to make it available
-  to components through Dependency Injection (DI).</p>
+<ng-container *ngIf="type=='Experience'">
 
-  <p>An app's components typically define many views, arranged hierarchically. Angular provides
-  the Router service to help you define navigation paths among views. The router provides
-  sophisticated in-browser navigational capabilities.</p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>
+
+  <div class="flex justify-between items-start p-4 rounded-t ">
+    <h3 class="text-xl font-bold ">
+      Add Experience
+    </h3>
+    <button type="button" mat-dialog-close
+      class=" bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span class="sr-only">Close modal</span>
+    </button>
+
+  </div>
+  <form [formGroup]="myExpForm" (ngSubmit)="onExpSubmit(myExpForm)">
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 sm:w-full group">
+        <input type="text" name="floating_title" formControlName="title" id="floating_title"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: HOD and Professor of Neurosurgery Dept " required="">
+        <label for="floating_title"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100  peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+        <div
+          *ngIf="myExpForm.get('title')!.invalid && (myExpForm.get('title')!.dirty || myExpForm.get('title')!.touched)"
+          class="text-red-500">
+          Please provide the title.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 sm:w-full group">
+        <input type="text" name="floating_company" formControlName="companyName" id="floating_company"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: AIIMS, Delhi " required="">
+        <label for="floating_company"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100  peer-focus:scale-75 peer-focus:-translate-y-6">Institution</label>
+        <div
+          *ngIf="myExpForm.get('companyName')!.invalid && (myExpForm.get('companyName')!.dirty || myExpForm.get('companyName')!.touched)"
+          class="text-red-500">
+          Please provide the institution name.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_location" id="floating_location" formControlName="location"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: Bachelor's" required="">
+        <label for="floating_location"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Degree</label>
+        <div
+          *ngIf="myExpForm.get('location')!.invalid && (myExpForm.get('location')!.dirty || myExpForm.get('location')!.touched)"
+          class="text-red-500">
+          Please provide the location.
+        </div>
+      </div>
+      <!-- <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_StudyField" id="floating_StudyField" formControlName="studyField" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer" placeholder="Ex: Nephrology" required="">
+        <label for="floating_StudyField" class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Field of Study</label>
+        <div *ngIf="myForm.get('studyField')!.invalid && (myForm.get('studyField')!.dirty || myForm.get('studyField')!.touched)" class="text-red-500">
+            Please provide the field of study.
+          </div>
+    </div> -->
+    </div>
+
+    <!-- <div class="relative z-0 mb-6 w-full group">
+        <input type="text" name="floating_StudyField" id="floating_StudyField" formControlName="studyField" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer" placeholder="Ex: Nephrology" required="">
+        <label for="floating_StudyField" class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Field of Study</label>
+        <div *ngIf="myForm.get('studyField')!.invalid && (myForm.get('studyField')!.dirty || myForm.get('studyField')!.touched)" class="text-red-500">
+            Please provide the field of study.
+          </div>
+    </div> -->
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="month" name="floating_start_date" id="floating_start_date" formControlName="startDate"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="April,2022" required="">
+        <label for="floating_start_date"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600  peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Start
+          Date</label>
+        <div
+          *ngIf="myExpForm.get('startDate')!.invalid && (myExpForm.get('startDate')!.dirty || myExpForm.get('startDate')!.touched)"
+          class="text-red-500">
+          Please provide the start date.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="month" name="floating_end_date" id="floating_end_date" formControlName="endDate"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="June,2022" required="">
+        <label for="floating_end_date"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600  peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">End
+          Date (or expected)</label>
+        <div
+          *ngIf="myExpForm.get('endDate')!.invalid && (myExpForm.get('endDate')!.dirty || myExpForm.get('endDate')!.touched)"
+          class="text-red-500">
+          Please provide the end date.
+        </div>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <!-- <div class="relative z-0 mb-6 w-full group">
+          <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer" placeholder=" " required="">
+          <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456-7890)</label>
+      </div> -->
+      <div class="relative z-0 mb-6 w-full group mt-2">
+        <textarea name="floating_desc" id="floating_desc" rows="4" formControlName="description"
+          class="block py-2.5 px-0 w-full text-sm   bg-transparent border-2  border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Share your experience and achievements during your tenure "></textarea>
+        <label for="floating_desc"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+        <!-- <div *ngIf="myForm.get('description')!.invalid && (myForm.get('description')!.dirty || myForm.get('description')!.touched)" class="text-red-500">
+            Please provide a description.
+          </div>   -->
+      </div>
+    </div>
+    <button type="submit" [disabled]="myExpForm.invalid"
+      class="text-white bg-purple-700 disabled:opacity-25 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Add</button>
+  </form>
+
+</ng-container>
+
+<ng-container *ngIf="type=='AwardsPublications'">
+
+
+  <div class="flex justify-between items-start p-4 rounded-t ">
+    <h3 class="text-xl font-bold ">
+      Add Awards and Publications
+    </h3>
+    <button type="button" mat-dialog-close
+      class=" bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span class="sr-only">Close modal</span>
+    </button>
+
+  </div>
+  <form [formGroup]="myAwardForm" (ngSubmit)="onAwardSubmit(myAwardForm)">
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 sm:w-full group">
+        <input type="text" name="floating_title" formControlName="awardName" id="floating_awardName"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: Dentist of the year" required="">
+        <label for="floating_awardName"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100  peer-focus:scale-75 peer-focus:-translate-y-6">Award
+          or Publication name</label>
+        <div
+          *ngIf="myAwardForm.get('awardName')!.invalid && (myAwardForm.get('awardName')!.dirty || myAwardForm.get('awardName')!.touched)"
+          class="text-red-500">
+          Please provide the name of the award por publication.
+        </div>
+      </div>
+      <div class="relative z-0 mb-6 w-full group mt-2">
+        <textarea name="floating_place" id="floating_place" rows="2" formControlName="place"
+          class="block py-2.5 px-0 w-full text-sm   bg-transparent border-2  border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="Ex: Indian Medical Association, Delhi"></textarea>
+        <label for="floating_place"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Place
+          or Organization</label>
+          <div *ngIf="myAwardForm.get('place')!.invalid && (myAwardForm.get('place')!.dirty || myAwardForm.get('place')!.touched)" class="text-red-500">
+            Please enter the organization or the place.
+          </div>  
+
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 md:gap-6">
+      <div class="relative z-0 mb-6 w-full group">
+        <input type="month" name="floating_date" id="floating_date" formControlName="date"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+          placeholder="April,2022" required="">
+        <label for="floatingdate"
+          class="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-purple-600  peer-placeholder-shown:scale-100   peer-focus:scale-75 peer-focus:-translate-y-6">Start
+          Date</label>
+        <div
+          *ngIf="myAwardForm.get('date')!.invalid && (myAwardForm.get('date')!.dirty || myAwardForm.get('date')!.touched)"
+          class="text-red-500">
+          Please provide the  date.
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" [disabled]="myAwardForm.invalid"
+      class="text-white bg-purple-700 disabled:opacity-25 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">Add</button>
+  </form>
+
+</ng-container>

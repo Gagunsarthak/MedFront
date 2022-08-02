@@ -21,6 +21,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
     </div>
   </div> -->
   timelineFetchStatus : {{timelineFetchStatus}}
+  <button mat-button (click)="openDialog('test')">Open dialog</button>
 <div class="flex flex-wrap  mb-8" *ngIf="timelineFetchStatus === 'done'" >
   
     <div class="w-full  lg:w-3/5 xl:w-3/4 " [ngClass]="isMobileOrTabView ? 'md:w-full' : 'md:w-3/5'">
@@ -34,7 +35,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                             <ng-container *ngIf="!isMobileOrTabView">
                             <div class="flex-none sm:flex">
                                 <div class=" relative h-32 w-32   sm:mb-0 mb-3">
-                                    <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" class=" w-32 h-32 object-cover rounded-full">
+                                    <img src={{profRes.profImageUrl}} alt="aji" class=" w-32 h-32 object-cover rounded-full">
                                     <a href="#"
                                         class="absolute -right-2 bottom-2   -ml-3  text-white p-1 text-xs bg-green-400 hover:bg-green-500 font-medium tracking-wider rounded-full transition ease-in duration-300">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -123,7 +124,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                                         d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z">
                                                     </path>
                                                 </svg>
-                                                <p class="">1.2k Followers</p>
+                                                <p class="">{{profRes.satisfiedPatients}} satisfied patients</p>
                                             </div>
                                             <div class="flex-1 inline-flex items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
@@ -132,7 +133,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                                         d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                                <p class="">140 Consultations</p>
+                                                <p class="">{{profRes.consultations}} Consultations</p>
                                             </div>
                                             <!-- <button  class="flex-no-shrink bg-green-400 hover:bg-green-500 px-5 ml-4 py-2 text-xs shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300">FOLLOW</button> -->
                                         </div>
@@ -144,7 +145,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                             
                                 <div class="flex items-center">
                                     <div class=" relative h-16 w-16   sm:mb-0 mb-3">
-                                        <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" class=" w-16 h-16 object-cover rounded-full">
+                                        <img src={{profRes.profImageUrl}} alt="aji" class=" w-16 h-16 object-cover rounded-full">
                                         <a href="#"
                                             class="absolute -right-2 bottom-2   -ml-3  text-white p-1 text-xs bg-green-400 hover:bg-green-500 font-medium tracking-wider rounded-full transition ease-in duration-300">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -172,9 +173,10 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                   </div>
                                   <div class="flex pt-2  text-sm text-gray-500">
                                             
-                                    <div class="flex-1 inline-flex items-center">
+                                    <div class="flex-1 inline-flex items-center" >
                                         <mat-chip-list aria-label="Consultations Available">
-                                            <mat-chip color="accent"selected >
+                                           
+                                          <mat-chip color="accent"selected >
                                                 <mat-chip-avatar>
                                                     <mat-icon>stars</mat-icon>
                                                 </mat-chip-avatar>
@@ -258,53 +260,26 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                           </div>
                                           
                                           </div>
-                                          <div class="flex flex-col w-1/2 md:pl-12">
+                                          <div class="flex flex-col w-1/2 md:pl-12"  >
                                             <!-- <h2 class="title-font  tracking-wider text-sm">Awards</h2> -->
-                                            <nav class="list-none -mb-1">
-                                              <li class="">
-
+                                            <nav class="list-none -mb-1" *ngFor="let tag of profRes.reviewTags; let i = index">
+                                     
+                                              <li class="" >
+                                              
                                                 <div class="p-2">
                                                     <div class="inline-flex items-center ">
-                                                      <span class="inline-flex bg-green-600 text-white rounded-full h-6 px-3 justify-center items-center "><mat-icon> stars </mat-icon></span>
+                                                      <span class="inline-flex bg-{{color[i%4]}}-600 text-white rounded-full h-6 px-3 justify-center items-center "><mat-icon> stars </mat-icon></span>
                                                       <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                                   
-                                                        <span> Highly Recommended</span>
+                                                        <span>{{tag.tagName}}</span>
                                                        
                                                     </div>
                                                     </div>
-                                                    <div class=" text-xs">93% of the patients rated this doctor 5 stars</div>
+                                                    <div class=" text-xs">{{tag.description}}</div>
                                                   </div>
                                                 
                                               </li>
-                                              <li class="">
-
-                                                <div class="p-2">
-                                                    <div class="inline-flex items-center ">
-                                                      <span class="inline-flex bg-purple-600 text-white rounded-full h-6 px-3 justify-center items-center "><mat-icon> access_time </mat-icon></span>
-                                                      <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
-                                                  
-                                                        <span>Excellent wait time</span>
-                                                       
-                                                    </div>
-                                                    </div>
-                                                    <div class=" text-xs">96% of the patients waited less than 30 minutes</div>
-                                                  </div>
-                                                
-                                              </li>
-                                              <li class="">
-                                                <div class="p-2">
-                                                    <div class="inline-flex items-center ">
-                                                      <span class="inline-flex bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center"><mat-icon> whatshot </mat-icon></span>
-                                                      <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
-                                                  
-                                                        <span> Highly Recommended</span>
-                                                       
-                                                    </div>
-                                                    </div>
-                                                    <div class=" text-xs">93% of the patients rated this doctor 5 stars</div>
-                                                  </div>
-                                                
-                                              </li>
+                                            
                                             </nav>
                                           </div>
                                         </div>
@@ -393,8 +368,8 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                        <div class="flex justify-between">
                                         <h3>LANGUAGES SPOKEN</h3>
                                         <div class="example-button-row">
-                                          <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
-                                          <button> <mat-icon>create</mat-icon></button>
+                                          <button class="mr-3" (click)="openDialog('language')"><mat-icon>add_circle_outline</mat-icon></button>
+                                          <button (click)="goToProductDetails('languages')"> <mat-icon>create</mat-icon></button>
                                          
                                          
                                         </div>
@@ -408,7 +383,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                         <div class="flex justify-between">
                                           <h3>SPECIALIZATIONS</h3>
                                           <div class="example-button-row">
-                                            <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                            <button class="mr-3" (click)="openDialog('specialization')" ><mat-icon>add_circle_outline</mat-icon></button>
                                             <button> <mat-icon>create</mat-icon></button>
                                            
                                            
@@ -439,7 +414,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                     <div class="flex justify-between">
                                       <h3>EXPERIENCE</h3>
                                       <div class="example-button-row">
-                                        <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                        <button class="mr-3" (click)="openDialog('experience')"><mat-icon>add_circle_outline</mat-icon></button>
                                         <button> <mat-icon>create</mat-icon></button>
                                        
                                        
@@ -469,40 +444,27 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                 <div class="flex justify-between">
                                   <h3>AWARDS & PUBLICATIONS</h3>
                                   <div class="example-button-row">
-                                    <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                    <button class="mr-3" (click)="openDialog('awards')"><mat-icon>add_circle_outline</mat-icon></button>
                                     <button> <mat-icon>create</mat-icon></button>
                                    
                                    
                                   </div>
                                   
                                  </div>
-                              <ul class="">
+                              <ul class="" *ngFor="let award of profRes.awardsAndPublications">
                                   <li class="">     <div class="">
                                       <div class="inline-flex items-center ">
                                         <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
                                         <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
                                     
-                                          <span> Former President Of Indian Medical Association, Mysore, 2013</span>
+                                          <span>{{award.awardName}}, {{award.place}}, {{award.date}}</span>
                                           <!-- <div class=" text-xs font-light">National Institute of Mental Health and Neurosciences (NIMHANS)</div> -->
                                       </div>
                                       
                                       </div>
                                       
                                     </div></li>
-                                    <li class="">     <div class="">
-                                      <div class="inline-flex items-center ">
-                                          <span class="inline-flex  rounded-full h-6 px-3 justify-center items-center "><i class='fas fa-award fa-lg'></i></span>
-                                          <div class="  cursor-pointer items-center gap-2  ml-2 rounded-lg  p-2">
-                                    
-                                          <span>Secretary of Indian Medical Association,Mysore, 2012</span>
-                                          <!-- <div class=" text-xs font-e">Srirama Chandra Bhanja Medical College and Hospital</div> -->
-                                      </div>
-                                      
-                                      </div>
-                                      
-                                    </div></li>
-                                  <!-- <li class="p-3">List Item 3</li>
-                                  <li class="p-3">List Item 4</li> -->
+                                  
                               </ul>
                           </mat-card>
                         
@@ -511,7 +473,7 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
                                           <div class="flex justify-between">
                                             <h3>EDUCATIONAL QUALIFICATIONS</h3>
                                             <div class="example-button-row">
-                                              <button class="mr-3" ><mat-icon>add_circle_outline</mat-icon></button>
+                                              <button class="mr-3" (click)="openDialog('education')"><mat-icon>add_circle_outline</mat-icon></button>
                                               <button> <mat-icon>create</mat-icon></button>
                                              
                                              
@@ -953,3 +915,82 @@ Profile isMobileOrTabView :{{isMobileOrTabView}}
    
     <mat-spinner class="display-inline-block" [diameter]="60" [strokeWidth]="3"></mat-spinner>
   </div> -->
+
+
+
+
+  <!-- Code for DialogBox -->
+
+
+  <ng-template  #dialogTemplate>
+    <div class="relative  w-full h-full md:h-auto">
+      <div class="flex justify-between items-start p-4 rounded-t ">
+        <h3 class="text-xl font-semibold ">
+            Add {{dialogHeader}}
+        </h3>
+        <button type="button" mat-dialog-close class=" bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Close modal</span>
+        </button>
+        
+    </div>
+  <!-- Modal toggle -->
+  <div class=" space-y-6">
+    <div class="relative w-full mb-3">
+      <label class="block uppercase text-xs mb-2" htmlfor="grid-password">
+        {{dialogHeader}}
+      </label>
+      <input type="text" class="border-0 px-3 py-3 text-gray-700 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+    </div>
+  </div>
+  <!-- Main modal -->
+      
+  <div class="flex flex-row-reverse p-6 space-x-2 rounded-b dark:border-gray-600">
+    <button mat-flat-button mat-dialog-close class="text-gray-500 sm:w-1/5 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none ">Cancel</button>
+    <button mat-flat-button [mat-dialog-close]="true" color="primary" class="sm:w-1/5" style="margin-right:4% ;">Add</button>
+  
+  
+  </div>
+    </div>
+
+  </ng-template>
+
+  <ng-template #dialogTemplate2>
+    <div id="authentication-modal" tabindex="-1" class=" overflow-y-auto overflow-x-hidden  top-0 right-0  z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="relative w-full  h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative  rounded-lg shadow ">
+              <button type="button" class="absolute top-3 right-2.5 bg-transparent   rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="py-6  lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium ">Sign in to our platform</h3>
+                  <form class="space-y-6" action="#">
+                      <div>
+                          <label for="email" class="block mb-2 text-sm font-medium">Your email</label>
+                          <input type="email" name="email" id="email" class="bg-gray-50 border  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                      </div>
+                      <div>
+                          <label for="password" class="block mb-2 text-sm font-medium ">Your password</label>
+                          <input type="password" name="password" id="password" placeholder="••••••••" class="border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                      </div>
+                      <div class="flex justify-between">
+                          <div class="flex items-start">
+                              <div class="flex items-center h-5">
+                                  <input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
+                              </div>
+                              <label for="remember" class="ml-2 text-sm font-medium ">Remember me</label>
+                          </div>
+                          <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
+                      </div>
+                      <button type="submit" class="w-full  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+                      <div class="text-sm font-medium  ">
+                          Not registered? <a href="#" class=" hover:underline">Create account</a>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+  </ng-template>

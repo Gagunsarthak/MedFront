@@ -26,6 +26,8 @@ import { AppFooterComponent } from './component/app-footer/app-footer.component'
 import { NgxHideOnScrollModule } from 'ngx-hide-on-scroll';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogComponent } from './component/dialog/dialog.component';
+import { MatChipsModule } from '@angular/material/chips';
+
 @NgModule({
   declarations: [
     // AppComponent
@@ -52,6 +54,7 @@ import { DialogComponent } from './component/dialog/dialog.component';
     MatRippleModule,
     MatDialogModule,
     MatInputModule,
+    MatChipsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTooltipModule,
